@@ -73,6 +73,10 @@ typedef struct {
 static void crtc_dpms(xf86CrtcPtr crtc, int mode);
 static void crtc_save(xf86CrtcPtr crtc);
 static void crtc_restore(xf86CrtcPtr crtc);
+static Bool crtc_lock(xf86CrtcPtr crtc);
+static void crtc_unlock(xf86CrtcPtr crtc);
+static Bool crtc_mode_fixup(xf86CrtcPtr crtc, DisplayModePtr mode,
+                            DisplayModePtr adjusted_mode);
 static void crtc_prepare(xf86CrtcPtr crtc);
 static void crtc_mode_set(xf86CrtcPtr crtc, DisplayModePtr mode,
                           DisplayModePtr adjusted_mode, int x, int y);
@@ -83,6 +87,9 @@ static const xf86CrtcFuncsRec crtc_funcs = {
     .dpms = crtc_dpms,
     .save = crtc_save,
     .restore = crtc_restore,
+    .lock = crtc_lock,
+    .unlock = crtc_unlock,
+    .mode_fixup = crtc_mode_fixup,
     .prepare = crtc_prepare,
     .mode_set = crtc_mode_set,
     .commit = crtc_commit,
@@ -894,6 +901,24 @@ crtc_restore(xf86CrtcPtr crtc)
         vga_flags |= VGA_SR_FONTS;
 
     state_restore(crtc, &data->saved_state, &vga->SavedReg, vga_flags);
+}
+
+static Bool
+crtc_lock(xf86CrtcPtr crtc)
+{
+    return FALSE;
+}
+
+static void
+crtc_unlock(xf86CrtcPtr crtc)
+{
+}
+
+static Bool
+crtc_mode_fixup(xf86CrtcPtr crtc, DisplayModePtr mode,
+                DisplayModePtr adjusted_mode)
+{
+    return TRUE;
 }
 
 static void

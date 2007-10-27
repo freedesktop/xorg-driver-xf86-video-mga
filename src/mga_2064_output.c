@@ -44,6 +44,8 @@ typedef struct {
 } MgaOutputDataRec, *MgaOutputDataPtr;
 
 static void output_dpms(xf86OutputPtr output, int mode);
+static void output_save(xf86OutputPtr output);
+static void output_restore(xf86OutputPtr output);
 static int output_mode_valid(xf86OutputPtr output, DisplayModePtr mode);
 static int output_mode_fixup(xf86OutputPtr output, DisplayModePtr mode,
                              DisplayModePtr adjusted_mode);
@@ -57,6 +59,8 @@ static void output_destroy(xf86OutputPtr output);
 
 static const xf86OutputFuncsRec output_funcs = {
     .dpms = output_dpms,
+    .save = output_save,
+    .restore = output_restore,
     .mode_valid = output_mode_valid,
     .mode_fixup = output_mode_fixup,
     .prepare = output_prepare,
@@ -109,6 +113,16 @@ output_dpms(xf86OutputPtr output, int mode)
 
     OUTREG8(MGAREG_SEQ_DATA, seq1);
     OUTREG8(MGAREG_CRTCEXT_DATA, crtcext1);
+}
+
+static void
+output_save(xf86OutputPtr output)
+{
+}
+
+static void
+output_restore(xf86OutputPtr output)
+{
 }
 
 static int
