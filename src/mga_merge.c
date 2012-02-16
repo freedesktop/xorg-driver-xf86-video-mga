@@ -778,11 +778,6 @@ MGAMergePointerMoved(SCRN_ARG_TYPE arg, int x, int y)
         pScr2->frameX0 = f2.x0;
         pScr2->frameY0 = f2.y0;
 
-        /*Adjust Granularity */
-        MGAAdjustGranularity(pScrn,&pMga->M1frameX0,&pMga->M1frameY0);
-        MGAAdjustGranularity(pScrn,&pScr2->frameX0,&pScr2->frameY0);
-        MGAAdjustGranularity(pScrn,&pScrn->frameX0,&pScrn->frameY0);
-        
         pMga->M1frameX1 = pMga->M1frameX0 + MDMPTR(pScrn)->Monitor1->HDisplay -1;
         pMga->M1frameY1 = pMga->M1frameY0 + MDMPTR(pScrn)->Monitor1->VDisplay -1;
         pScr2->frameX1 = pScr2->frameX0 + MDMPTR(pScrn)->Monitor2->HDisplay -1;
@@ -853,11 +848,6 @@ MGAAdjustMergeFrames(ADJUST_FRAME_ARGS_DECL) {
     
     pScrn1->frameX0 = x;
     pScrn1->frameY0 = y;
-    
-    /* check granularity */
-    MGAAdjustGranularity(pScrn1,&pMga->M1frameX0,&pMga->M1frameY0);
-    MGAAdjustGranularity(pScrn1,&pScrn2->frameX0,&pScrn2->frameY0);
-    MGAAdjustGranularity(pScrn1,&pScrn1->frameX0,&pScrn1->frameY0);
     
     /* complete shitty redundant info */
     pMga->M1frameX1 = pMga->M1frameX0 + MDMPTR(pScrn1)->Monitor1->HDisplay -1;

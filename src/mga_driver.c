@@ -3387,15 +3387,6 @@ MGASwitchMode(SWITCH_MODE_ARGS_DECL)
 	return MGAModeInit(pScrn, mode);
 }
  
- /* Adjusts coordinates to match Panning granularity.
-  * does nothing if the HALlib is not loaded
-  */
-void
-MGAAdjustGranularity(ScrnInfoPtr pScrn, int* x, int* y)
-{
-}
-
-
 /*
  * This function is used to initialize the Start Address - the first
  * displayed location in the video memory.

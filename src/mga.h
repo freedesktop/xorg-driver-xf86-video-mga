@@ -700,8 +700,6 @@ void MGAAdjustFrameCrtc2(ADJUST_FRAME_ARGS_DECL);
 void MGADisplayPowerManagementSetCrtc2(ScrnInfoPtr pScrn,
 					     int PowerManagementMode,
 					     int flags);
-void MGAAdjustGranularity(ScrnInfoPtr pScrn, int* x, int* y); 
-
 
 void MGA2064SetupFuncs(ScrnInfoPtr pScrn);
 void MGAGSetupFuncs(ScrnInfoPtr pScrn);
