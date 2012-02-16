@@ -441,8 +441,6 @@ struct mga_device_attributes {
     unsigned dri_capable:1;
     unsigned dri_chipset:3;
     
-    unsigned HAL_chipset:1;
-
     enum {
 	old_BARs = 0,
 	probe_BARs,
