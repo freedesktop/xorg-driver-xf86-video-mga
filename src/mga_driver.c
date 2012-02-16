@@ -417,8 +417,6 @@ static const struct mga_device_attributes attribs[] = {
 #ifdef XSERVER_LIBPCIACCESS
 #define MGA_DEVICE_MATCH(d, i) \
     { 0x102B, (d), PCI_MATCH_ANY, PCI_MATCH_ANY, 0, 0, (i) }
-#define MGA_SUBDEVICE_MATCH(d, s, i) \
-    { 0x102B, (d), 0x102B, (s), 0, 0, (i) }
 
 static const struct pci_id_match mga_device_match[] = {
     MGA_DEVICE_MATCH(PCI_CHIP_MGA2064,     0),
