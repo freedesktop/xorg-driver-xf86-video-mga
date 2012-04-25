@@ -730,6 +730,11 @@ state_set(xf86CrtcPtr crtc, MgaCrtcStatePtr state,
 
     state->ExtVga[4] = 0;
 
+    if (pMga->is_G200WB){
+	state->ExtVga[1] |= 0x88;
+    }
+    state->ExtVga_Index24 = 0x05;
+
     vga->CRTC[0] = ht - 4;
     vga->CRTC[1] = hd;
     vga->CRTC[2] = hd;
