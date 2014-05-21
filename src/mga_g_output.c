@@ -31,7 +31,6 @@
 #endif
 
 #include "xf86.h"
-#include "xf86PciInfo.h"
 
 #include "mga_reg.h"
 #include "mga.h"
