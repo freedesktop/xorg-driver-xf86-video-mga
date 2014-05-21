@@ -29,14 +29,23 @@ MGARefreshArea(ScrnInfoPtr pScrn, int num, BoxPtr pbox)
 	FBPitch = BitmapBytePad(pScrn->displayWidth * pScrn->bitsPerPixel);
 
     while(num--) {
+	/* clip the box to the screen */
+	pbox->x1 = max(pbox->x1, 0);
+	pbox->y1 = max(pbox->y1, 0);
+	pbox->x2 = min(pbox->x2, pScrn->pScreen->width - 1);
+	pbox->y2 = min(pbox->y2, pScrn->pScreen->height - 1);
+
 	width = (pbox->x2 - pbox->x1) * Bpp;
 	height = pbox->y2 - pbox->y1;
+
+	if (height < 1 || width < 1)
+	    continue;
+
 	src = pMga->ShadowPtr + (pbox->y1 * pMga->ShadowPitch) + 
 						(pbox->x1 * Bpp);
 	dst = pMga->FbStart + (pbox->y1 * FBPitch) + (pbox->x1 * Bpp);
 
-	/* the && here is just fucking revolting */
-	while(height-- && (dst >= pMga->FbStart)) {
+	while (height--) {
 	    memcpy(dst, src, width);
 	    dst += FBPitch;
 	    src += pMga->ShadowPitch;
